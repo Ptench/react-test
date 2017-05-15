@@ -51,9 +51,9 @@ const ListProducts = ({products}) => {
 const FormDiscount = ({discoutSum, submitDiscoutSum, onChangeInput}) => {
     return(
         <form onSubmit={submitDiscoutSum}>
-            <span>Применить скидку</span>
-            <input name="discoutSum" value={discoutSum} onChange={onChangeInput} type="text"/>
-            рублей
+            <span className="margin-r">Применить скидку</span>
+            <input className="margin-r" name="discoutSum" value={discoutSum} onChange={onChangeInput} type="text"/>
+            <span className="margin-r">рублей</span> 
             <button type="submit">Применить</button>
         </form>
     )

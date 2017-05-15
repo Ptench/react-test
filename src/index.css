@@ -5,6 +5,7 @@ body {
 }
 .shop-bag {
   width: 450px;
+  padding: 20px;
 }
 table {
   margin-bottom: 20px;
@@ -26,5 +27,8 @@ p {
 }
 label {
   display: inline-block;
+  margin-right: 15px;
+}
+.margin-r {
   margin-right: 15px;
 }
