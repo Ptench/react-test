@@ -18,5 +18,4 @@
     "deploy" : "npm run build&&gh-pages -d build"
   },
   "homepage": "https://ptench.github.io/react-test/"
-
 }
