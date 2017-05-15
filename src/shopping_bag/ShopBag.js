@@ -7,7 +7,7 @@ const FormForShopBag = ({submitProduct, inputPrice, inputProduct, onChangeInput}
                 <input name="inputProduct" value={inputProduct} onChange={onChangeInput} type="text"/>
             </label>
             <label><p> Цена </p>
-                <input name="inputPrice" value={inputPrice} onChange={onChangeInput}  type="text"/>
+                <input name="inputPrice" value={inputPrice} onChange={onChangeInput}  type="number"/>
             </label>
             <button type="submit">Добавить</button>
         </form>
@@ -52,7 +52,7 @@ const FormDiscount = ({discoutSum, submitDiscoutSum, onChangeInput}) => {
     return(
         <form onSubmit={submitDiscoutSum}>
             <span className="margin-r">Применить скидку</span>
-            <input className="margin-r" name="discoutSum" value={discoutSum} onChange={onChangeInput} type="text"/>
+            <input className="margin-r" name="discoutSum" value={discoutSum} onChange={onChangeInput} type="number"/>
             <span className="margin-r">рублей</span> 
             <button type="submit">Применить</button>
         </form>

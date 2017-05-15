@@ -4,7 +4,7 @@ body {
   font-family: sans-serif;
 }
 .shop-bag {
-  width: 450px;
+  max-width: 510px;
   padding: 20px;
 }
 table {
@@ -31,4 +31,13 @@ label {
 }
 .margin-r {
   margin-right: 15px;
+}
+input, button {
+  border: 1px solid #000;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+button {
+  border-radius: 5px;
 }
