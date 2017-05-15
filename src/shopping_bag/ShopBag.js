@@ -7,7 +7,7 @@ const FormForShopBag = ({submitProduct, inputPrice, inputProduct, onChangeInput}
                 <input name="inputProduct" value={inputProduct} onChange={onChangeInput} type="text"/>
             </label>
             <label><p> Цена </p>
-                <input name="inputPrice" value={inputPrice} onChange={onChangeInput}  type="number"/>
+                <input name="inputPrice" required value={inputPrice} min="0" onChange={onChangeInput}  type="number"/>
             </label>
             <button type="submit">Добавить</button>
         </form>
@@ -52,7 +52,7 @@ const FormDiscount = ({discoutSum, submitDiscoutSum, onChangeInput}) => {
     return(
         <form onSubmit={submitDiscoutSum}>
             <span className="margin-r">Применить скидку</span>
-            <input className="margin-r" name="discoutSum" value={discoutSum} onChange={onChangeInput} type="number"/>
+            <input className="margin-r" name="discoutSum" required min="0" value={discoutSum} onChange={onChangeInput} type="number"/>
             <span className="margin-r">рублей</span> 
             <button type="submit">Применить</button>
         </form>
@@ -105,6 +105,8 @@ class ShopBag extends Component {
            this.state.products.map((product, ind) => {
                let withDisc = Math.round(product.price - product.price / 100 * persent);
                sumDiscProduct += product.price - withDisc;
+               
+               (withDisc < 0) ? withDisc = 0 : null
                let pr = [{...product, priceDisc: withDisc}]
                prodcs = [...prodcs, {...product, priceDisc: withDisc}]
 
@@ -126,10 +128,12 @@ class ShopBag extends Component {
 
            var surplus = parseInt(this.state.discoutSum) - sumDiscProduct 
            if (surplus != 0 ) {
+               let discM = this.state.products[maxInd].priceDisc - surplus;
+                (discM < 0) ? discM = 0 : null
                this.setState({
                    products: [
                        ...this.state.products.slice(0, maxInd),
-                       {...this.state.products[maxInd], priceDisc: this.state.products[maxInd].priceDisc - surplus},
+                       {...this.state.products[maxInd], priceDisc: discM},
                        ...this.state.products.slice(maxInd + 1)
                    ]
                })
