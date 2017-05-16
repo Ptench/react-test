@@ -103,42 +103,45 @@ class ShopBag extends Component {
            var maxInd;
            var sumDiscProduct = 0;
            this.state.products.map((product, ind) => {
+            
                let withDisc = Math.round(product.price - product.price / 100 * persent);
                sumDiscProduct += product.price - withDisc;
                
                (withDisc < 0) ? withDisc = 0 : null
-               let pr = [{...product, priceDisc: withDisc}]
-               prodcs = [...prodcs, {...product, priceDisc: withDisc}]
+               let pr = {...product, priceDisc: withDisc}
+               prodcs = [...prodcs, pr]
 
                if (max < product.price) {
                    max = product.price
                    maxInd = ind
                }
+                // console.log(product)
+           }) 
+           console.log(prodcs)
+          // 
+           console.log(this.state)
+           var surplus = parseInt(this.state.discoutSum) - sumDiscProduct 
+        //    console.log(this.state.discoutSum)
+        //    console.log(sumDiscProduct)
+        //    console.log(surplus)
+           if (surplus != 0 ) {
+               let discM = Math.round(this.state.products[maxInd].price - this.state.products[maxInd].price / 100 * persent) - surplus;
+                (discM < 0) ? discM = 0 : null
+                prodcs = [
+                            ...prodcs.slice(0, maxInd),
+                       {...this.state.products[maxInd], priceDisc: discM},
+                       ...prodcs.slice(maxInd + 1)
+                ]
             //    this.setState({
             //        products: [
-            //            ...this.state.products.slice(0, ind),
-            //            {...pr},
-            //            ...this.state.products.slice(ind + 1)
+            //            ...prodcs.slice(0, maxInd),
+            //            {...this.state.products[maxInd], priceDisc: discM},
+            //            ...prodcs.slice(maxInd + 1)
             //        ]
             //    })
-                console.log(product)
-           }) 
+           }
 
            this.setState({products: prodcs})
-
-           var surplus = parseInt(this.state.discoutSum) - sumDiscProduct 
-           if (surplus != 0 ) {
-               let discM = this.state.products[maxInd].priceDisc - surplus;
-                (discM < 0) ? discM = 0 : null
-               this.setState({
-                   products: [
-                       ...this.state.products.slice(0, maxInd),
-                       {...this.state.products[maxInd], priceDisc: discM},
-                       ...this.state.products.slice(maxInd + 1)
-                   ]
-               })
-           }
-    
     }
 
     render() {
